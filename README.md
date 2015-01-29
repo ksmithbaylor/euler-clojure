@@ -11,7 +11,6 @@ Clone the repository, make sure leiningen is installed, and run `lein deps`.
 
 ### To run and check all solutions:
 
-    ```shell
     $ ./run all
     001 - "Elapsed time: 0.51 msecs"        PASS - 233168
     002 - "Elapsed time: 0.314 msecs"       PASS - 4613732
@@ -40,12 +39,10 @@ Clone the repository, make sure leiningen is installed, and run `lein deps`.
 
 ### To run and check the solution for Problem 5:
 
-    ```shell
     $ ./run 5
     005 - "Elapsed time: 0.186 msecs"       PASS - 232792560
 
 
 ### To generate a Clojure file for a new problem:
 
-    ```shell
     $ ./gen 42
