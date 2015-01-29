@@ -1,0 +1,10 @@
+#!/bin/bash
+
+padded=$(printf "%03d" $1)
+file="solutions/$padded.clj"
+
+echo "
+(defn solution
+  []
+  12345)
+" > $file

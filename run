@@ -1,0 +1,49 @@
+#!/bin/bash
+
+function get_benchmarker_string() {
+    echo "
+(def timestr (with-out-str (time (def answer (solution)))))
+(.write (System/out) (.getBytes (str \"$1 - \" (clojure.string/trim-newline timestr))))
+(if (= (get answers/answer-key $(echo $1 | sed 's/^0*//'))
+       answer)
+  (.write (System/out) (.getBytes \"\\t\\u001b[38;5;034mPASS\\u001b[39m - \"))
+  (.write (System/out) (.getBytes \"\\t\\u001b[38;5;196mFAIL\\u001b[39m - \")))
+(.write (System/out) (.getBytes (.toString answer)))
+(println)
+(flush)
+"
+}
+
+function get_whole_run() {
+    echo "
+(ns euler-$1)
+(set! *unchecked-math* true)
+"
+    cat solutions/$1.clj
+    echo $(get_benchmarker_string $1)
+}
+
+function setup() {
+    if [[ $1 -eq "all" ]]; then
+        files=$(ls solutions/*.clj)
+    else
+        files=$(ls solutions/*$(printf "%03d" $1).clj)
+    fi
+}
+
+function main() {
+    cat answer-key.clj > run.clj
+
+    setup $1
+
+    for file in $files
+    do
+        padded=$(echo $file | sed 's/\.clj//' | sed 's/solutions\///')
+        echo "$(get_whole_run $padded)" >> run.clj
+    done
+
+    lein exec run.clj
+    rm run.clj
+}
+
+main $1
