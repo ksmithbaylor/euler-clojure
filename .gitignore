@@ -1,2 +1,5 @@
 .lein-repl-history
 target
+*.swp
+*.swo
+*.DS_Store
