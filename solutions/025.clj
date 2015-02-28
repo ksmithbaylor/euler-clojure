@@ -1,9 +1,13 @@
-(defn fibs
-  ([] (fibs 1N 1N))
-  ([a b] (cons a (lazy-seq (fibs b (+ a b))))))
-
+(defn first-fib-term-with-digits
+  [n]
+  (let [upper-limit (apply * (repeat (dec n) 10N))]
+    (loop [a 1N b 1N c 0]
+    (if (> a upper-limit)
+      (inc c)
+      (recur b
+             (+ a b)
+             (inc c))))))
 
 (defn solution
   []
-  (inc (count (take-while #(> (apply * (repeat 999 10N)) %)
-                          (fibs)))))
+  (first-fib-term-with-digits 1000))
