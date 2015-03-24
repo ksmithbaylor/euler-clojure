@@ -1,4 +1,8 @@
-(defn solution
-  []
-  (- (reduce + (concat ((partial range 0 1000) 3) ((partial range 0 1000) 5)))
-     (reduce + ((partial range 0 1000) 15))))
+(defn multiples-of-under
+  "Returns a set of numbers lesser than `limit` that are multiples of all `nums`"
+  [nums limit]
+  (set (flatten (map #(range 0 limit %)
+                     nums))))
+
+(defn solution []
+  (reduce + (multiples-of-under [3 5] 1000)))
