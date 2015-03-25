@@ -1,6 +1,4 @@
-(defn multiples-of-under
-  "Returns a set of numbers lesser than `limit` that are multiples of all `nums`"
-  [nums limit]
+(defn multiples-of-under [nums limit]
   (set (flatten (map #(range 0 limit %)
                      nums))))
 
