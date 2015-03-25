@@ -1,14 +1,10 @@
-(defn gcd
-  [a b]
+(defn gcd [a b]
   (if (zero? b)
     a
-    (recur b (mod a b))))
+    (recur b (rem a b))))
 
-(defn lcm
-  "least common multiple of two positive integers"
-  [a b]
+(defn lcm [a b]
   (/ (* a b) (gcd a b)))
 
-(defn solution
-  []
+(defn solution []
   (reduce lcm (range 1 20)))
