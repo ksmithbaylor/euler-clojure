@@ -1,14 +1,8 @@
-(defn square
-  [^Integer x]
-  (* x x))
+(defn square [x] (* x x))
+(defn square-all [xs] (map square xs))
+(defn sum [xs] (reduce + xs))
 
-(defn solution
-  []
-  (let [x  100
-        xs (range 1 (inc x))]
-    (- (->> xs (reduce +) square)
-       (->> xs (map square) (reduce +)))))
-
-
-(+ 1 1)
-(solution)
+(defn solution []
+  (let [xs (range 101)]
+    (- ((comp square sum) xs)
+       ((comp sum square-all) xs))))
