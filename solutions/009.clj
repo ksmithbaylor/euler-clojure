@@ -1,47 +1,36 @@
 (use '[leiningen.exec :only (deps)])
-(deps '[[net.mikera/core.matrix "0.29.1"]])
-(use 'clojure.core.matrix)
+(deps '[[net.mikera/core.matrix "0.33.2"]])
+(require '[clojure.core.matrix :as m])
 
-(def mA [[-1 2 2]
+(defn make-children [triple]
+  (map #(flatten (m/mmul % (map vector triple)))
+       [[[-1 2 2]
          [-2 1 2]
-         [-2 2 3]])
-(def mB [[1 2 2]
-         [2 1 2]
-         [2 2 3]])
-(def mC [[1 -2 2]
-         [2 -1 2]
-         [2 -2 3]])
-
-(defn make-children
-  [triple]
-  (let [parent (map vector triple)
-        children (map #(flatten (mmul % parent)) [mA mB mC])]
-    children))
+         [-2 2 3]] [[1 2 2]
+                    [2 1 2]
+                    [2 2 3]] [[1 -2 2]
+                              [2 -1 2]
+                              [2 -2 3]]]))
 
 (defn primitives
   ([] (primitives (conj clojure.lang.PersistentQueue/EMPTY [3 4 5])))
   ([q]
    (let [t (peek q)]
      (cons (vec t)
-           (lazy-seq (primitives (apply (partial conj (pop q)) (make-children t))))))))
+           (lazy-seq (primitives (apply (partial conj (pop q))
+                                        (make-children t))))))))
 
-(defmacro limit-triples-sequence
-  [limit s]
-  `(take-while
-     (fn [triple#]
-       (every? #(< % ~limit) triple#))
-     ~s))
+(defn limit-triples [limit triples]
+  (take-while (fn [ts]
+                (every? #(< % limit) ts))
+              triples))
 
-(defn triples-less-than
-  [n]
-  (apply concat
-    (for [primitive (limit-triples-sequence n (primitives))]
-      (limit-triples-sequence n
-        (for [mult (rest (range))]
-          (mul mult primitive))))))
+(defn triples-less-than [limit]
+  (apply concat (for [primitive (limit-triples limit (primitives))]
+                  (limit-triples limit (for [mult (rest (range))]
+                                         (m/mul primitive mult))))))
 
-(defn solution
-  []
+(defn solution []
   (->> (triples-less-than 1000)
        (filter #(= 1000 (reduce + %)))
        (first)
