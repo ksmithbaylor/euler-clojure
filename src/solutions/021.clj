@@ -1,3 +1,5 @@
+(ns solutions.021)
+
 (def sqrt
   #(Math/pow % 0.5))
 

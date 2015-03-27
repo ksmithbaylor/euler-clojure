@@ -1,4 +1,5 @@
-(require '[clojure.core.reducers :as r])
+(ns solutions.008
+  (:require [clojure.core.reducers :as r]))
 
 (defn largest-consecutive-sum
   [length digits]
@@ -11,4 +12,5 @@
   (->> (slurp "inputs/008.txt")
        (remove (partial = \newline))
        (map #(Integer/parseInt (str %)))
+       (vec)
        (largest-consecutive-sum 13)))

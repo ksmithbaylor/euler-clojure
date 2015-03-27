@@ -1,3 +1,5 @@
+(ns solutions.023)
+
 (defn sqrt ^double [^long n]
   (Math/sqrt n))
 

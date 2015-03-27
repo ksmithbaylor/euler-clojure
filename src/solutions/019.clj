@@ -1,3 +1,5 @@
+(ns solutions.019)
+
 (def divisible?
   #(zero? (rem %1 %2)))
 

@@ -1,3 +1,5 @@
+(ns solutions.007)
+
 ; Adapted from http://diditwith.net/2009/01/20/YAPESProblemSevenPart2.aspx
 ; and http://stackoverflow.com/a/7625207
 (defn lazy-primes

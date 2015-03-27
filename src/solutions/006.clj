@@ -1,3 +1,5 @@
+(ns solutions.006)
+
 (defn square [x] (* x x))
 (defn square-all [xs] (map square xs))
 (defn sum [xs] (reduce + xs))

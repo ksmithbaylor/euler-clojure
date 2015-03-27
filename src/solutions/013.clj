@@ -1,4 +1,5 @@
-(use ['clojure.string :only ['split-lines]])
+(ns solutions.013
+  (:require [clojure.string :as s]))
 
 (def input (slurp "inputs/013.txt"))
 
@@ -6,7 +7,7 @@
 
 (defn solution
   []
-  (let [numbers (map parseInt (split-lines input))
+  (let [numbers (map parseInt (s/split-lines input))
         sum (reduce + numbers)
         first-ten (subs (str sum) 0 10)]
     (parseInt first-ten)))

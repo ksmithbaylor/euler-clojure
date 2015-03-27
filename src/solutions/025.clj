@@ -1,3 +1,5 @@
+(ns solutions.025)
+
 (defn first-fib-term-with-digits
   [n]
   (let [upper-limit (apply * (repeat (dec n) 10N))]

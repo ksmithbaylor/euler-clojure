@@ -1,3 +1,5 @@
+(ns solutions.004)
+
 (defn is-palindromic? [x]
   (let [s (str x)]
     (= s (clojure.string/reverse s))))

@@ -1,6 +1,5 @@
-(use '[leiningen.exec :only (deps)])
-(deps '[[net.mikera/core.matrix "0.33.2"]])
-(require '[clojure.core.matrix :as m])
+(ns solutions.009
+  (:require [clojure.core.matrix :as m]))
 
 (defn make-children [triple]
   (map #(flatten (m/mmul % (map vector triple)))

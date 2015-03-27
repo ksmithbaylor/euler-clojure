@@ -1,9 +1,10 @@
-(use ['clojure.string :only ['split-lines 'split]])
+(ns solutions.011
+  (:require [clojure.string :as s]))
 
 (def rows
   (->> (slurp "inputs/011.txt")
-       (split-lines)
-       (map #(split % #" "))
+       (s/split-lines)
+       (map #(s/split % #" "))
        (map #(map (fn [x] (Integer/parseInt x)) %))
        (map vec)
        (vec)))

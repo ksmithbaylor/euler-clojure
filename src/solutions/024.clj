@@ -1,3 +1,5 @@
+(ns solutions.024)
+
 (defn vec->int
   [v]
   (reduce + (map (partial reduce *)

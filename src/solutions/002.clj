@@ -1,3 +1,5 @@
+(ns solutions.002)
+
 (defn fibs
   "Produces the fibonacci sequence as a lazy sequence"
   ([] (fibs 1 1))

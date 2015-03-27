@@ -1,3 +1,5 @@
+(ns solutions.016)
+
 (defn pow
   [n p]
   (reduce * (repeat p (bigint n))))

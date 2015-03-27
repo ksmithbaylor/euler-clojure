@@ -1,3 +1,5 @@
+(ns solutions.027)
+
 ; Has a certainty of 99.9%
 (defn prime?
   [n]

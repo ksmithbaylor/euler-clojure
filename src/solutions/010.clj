@@ -1,3 +1,5 @@
+(ns solutions.010)
+
 (defn primes-below
   [limit]
   (let [bs (java.util.BitSet. limit)]

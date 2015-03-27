@@ -1,9 +1,10 @@
-(use ['clojure.string :only ['split-lines 'split]])
+(ns solutions.022
+  (:require [clojure.string :as s]))
 
 (def names
   (-> (slurp "inputs/022.txt")
       (.replaceAll "\"" "")
-      (split #",")
+      (s/split #",")
       sort))
 
 (def name-positions

@@ -1,3 +1,5 @@
+(ns solutions.005)
+
 (defn gcd [a b]
   (if (zero? b)
     a

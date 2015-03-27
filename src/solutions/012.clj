@@ -1,4 +1,5 @@
-(load-file "solutions/010.clj")
+(ns solutions.012
+  (:require [solutions.010 :as s10]))
 
 (defn triangle
   ^long [^long n]
@@ -37,5 +38,5 @@
   []
   (def triangle-numbers
     (map triangle (iterate inc 1)))
-  (def primes (primes-below 250000))
+  (def primes (s10/primes-below 250000))
   (first-with-over-n-factors 500))

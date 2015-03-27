@@ -1,3 +1,5 @@
+(ns solutions.003)
+
 (defn largest-prime-factor [x]
   (loop [x x i 3]
     (cond (> i (Math/sqrt x)) x

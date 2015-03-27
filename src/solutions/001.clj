@@ -1,3 +1,5 @@
+(ns solutions.001)
+
 (defn multiples-of-under [nums limit]
   (set (flatten (map #(range 0 limit %)
                      nums))))

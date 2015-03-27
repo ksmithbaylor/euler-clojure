@@ -1,4 +1,5 @@
-(use ['clojure.string :only ['split-lines 'split]])
+(ns solutions.018
+  (:require [clojure.string :as s]))
 
 ; Utilities
 (def parseInt #(Integer/parseInt %))
@@ -7,8 +8,8 @@
 ; Data
 (def triangle
   (->> (slurp "inputs/018.txt")
-       split-lines
-       (map #(split % #" "))
+       s/split-lines
+       (map #(s/split % #" "))
        (map #(map parseInt %))
        (map vec)
        vec))

@@ -1,8 +1,8 @@
-(defproject euler-problems "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.6.0"]]
-  :plugins [[lein-exec "0.3.4"]
-            [org.clojure/tools.cli "0.3.1"]])
+(defproject euler-clojure "0.0.9"
+  :description "Project Euler in Clojure"
+  :url "https://github.com/ksmithbaylor/euler-clojure"
+  :license {:name "MIT"}
+  :main main
+  :source-paths ["src" "src/solutions" "src/answers"]
+  :dependencies [[org.clojure/clojure "1.6.0"]
+                 [net.mikera/core.matrix "0.33.2"]])
