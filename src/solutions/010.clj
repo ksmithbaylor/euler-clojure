@@ -1,15 +1,7 @@
-(ns solutions.010)
-
-(defn primes-below
-  [limit]
-  (let [bs (java.util.BitSet. limit)]
-    (.flip bs 0 2)
-    (doseq [i (range 2 limit)]
-      (if (not (.get bs i))
-        (doseq [j (range (+ i i) limit i)]
-          (.set bs j))))
-    (remove #(.get bs %) (range limit))))
+(ns solutions.010
+  (:require [solutions.007 :as s7]))
 
 (defn solution
   []
-  (reduce + (primes-below 2e6)))
+  (reduce + (take-while (partial > 2e6)
+                        (s7/lazy-primes))))
