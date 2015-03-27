@@ -1,11 +1,14 @@
 (ns solutions.011
   (:require [clojure.string :as s]))
 
+(defn parseInt [x]
+  (Integer/parseInt x))
+
 (def rows
   (->> (slurp "inputs/011.txt")
        (s/split-lines)
        (map #(s/split % #" "))
-       (map #(map (fn [x] (Integer/parseInt x)) %))
+       (map #(map parseInt %))
        (map vec)
        (vec)))
 
@@ -29,7 +32,7 @@
         front-nils (turn-to-nils counts)
         back-nils (turn-to-nils (reverse counts))
         pairs (interleave front-nils input back-nils)
-        combined (->> pairs (partition 3) (map (partial apply concat)))]
+        combined (map (partial apply concat) (partition 3 pairs))]
     combined))
 
 (defn diagonals
@@ -48,4 +51,4 @@
   (apply max (concat (products rows 4)
                      (products cols 4)
                      (diagonal-products rows 4)
-                     (diagonal-products (reverse cols) 4))))
+                     (diagonal-products cols 4))))
